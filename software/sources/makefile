@@ -1,36 +1,38 @@
-# Name: 	makefile
-# Project: 	tinyKnob
-# Author: 	Stefan Wagner
-# Year: 	2020
-# URL:		https://easyeda.com/wagiminator
+# Project:  tinyKnob
+# Author:   Stefan Wagner
+# Year:     2020
+# URL:      https://easyeda.com/wagiminator
+#           https://github.com/wagiminator
 #
 # type "make help" in the command line
 
 # Microcontroller Options
-DEVICE 	= attiny85
-CLOCK	= 16500000
-PROGRMR = usbtiny
-HFUSE	= 0xdd
-LFUSE	= 0xe1
+DEVICE  = attiny85
+CLOCK   = 16500000
+PROGRMR = usbasp
+HFUSE   = 0xdd
+LFUSE   = 0xe1
+
+# Objects
+OBJECTS = usbdrv/usbdrv.o usbdrv/usbdrvasm.o usbdrv/oddebug.o main.o
 
 # Commands
 AVRDUDE = avrdude -c $(PROGRMR) -p $(DEVICE)
 COMPILE = avr-gcc -Wall -Os -Iusbdrv -I. -mmcu=$(DEVICE) -DF_CPU=$(CLOCK) -DDEBUG_LEVEL=0
-OBJECTS = usbdrv/usbdrv.o usbdrv/usbdrvasm.o usbdrv/oddebug.o main.o
-CLEAN	= rm -f main.lst main.obj main.cof main.list main.map main.eep.hex *.o usbdrv/*.o main.s usbdrv/oddebug.s usbdrv/usbdrv.s
+CLEAN   = rm -f main.lst main.obj main.cof main.list main.map main.eep.hex *.o usbdrv/*.o main.s usbdrv/oddebug.s usbdrv/usbdrv.s
 
 # Symbolic Targets
 all:	help
 
 help:
 	@echo "Use the following commands:"
-	@echo "make hex	compile and build main.hex for $(DEVICE)"
-	@echo "make asm	compile and disassemble to main.asm for $(DEVICE)"
-	@echo "make bin	compile and build main.bin for $(DEVICE)"
-	@echo "make upload	compile and upload to $(DEVICE) using $(PROGRMR)"
-	@echo "make fuses	burn fuses of $(DEVICE) using $(PROGRMR) programmer"
-	@echo "make install	compile, upload and burn fuses for $(DEVICE)"
-	@echo "make clean	remove all build files"
+	@echo "make hex       compile and build main.hex for $(DEVICE)"
+	@echo "make asm       compile and disassemble to main.asm for $(DEVICE)"
+	@echo "make bin       compile and build main.bin for $(DEVICE)"
+	@echo "make upload    compile and upload to $(DEVICE) using $(PROGRMR)"
+	@echo "make fuses     burn fuses of $(DEVICE) using $(PROGRMR) programmer"
+	@echo "make install   compile, upload and burn fuses for $(DEVICE)"
+	@echo "make clean     remove all build files"
 
 bin:	$(OBJECTS)
 	@echo "Building main.bin ..."
