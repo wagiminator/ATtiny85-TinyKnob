@@ -8,7 +8,7 @@ TinyKnob is a rotary encoder with a USB interface based on the ATtiny45/85 and t
 - Make sure you have installed [avrdude](https://learn.adafruit.com/usbtinyisp/avrdude).
 - Connect your programmer to your PC and to the ICSP header on the board.
 - Open a terminal.
-- Navigate to the folder with the hex-file.
+- Navigate to the folder with the hex-file (software/binaries).
 - Execute the following command (if necessary replace "t85" with your chip and "usbasp" with the programmer you use):
   ```
   avrdude -c usbasp -p t85 -U flash:w:tinyknob.hex -U lfuse:w:0xe1:m -U hfuse:w:0xdd:m
@@ -19,7 +19,7 @@ TinyKnob is a rotary encoder with a USB interface based on the ATtiny45/85 and t
 - Connect your programmer to your PC and to the ICSP header on the board.
 - Open the makefile and change the chip if you are not using ATtiny85 and the programmer if you are not using usbasp.
 - Open a terminal.
-- Navigate to the folder with the makefile and the Arduino sketch.
+- Navigate to the folder with the makefile (software/sources).
 - Run "make install" to compile, burn the fuses and upload the firmware.
 
 # References, Links and Notes
