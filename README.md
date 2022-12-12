@@ -17,10 +17,9 @@ TinyKnob is a rotary encoder with a USB interface based on the ATtiny45/85 and t
 ## If using the makefile (Linux/Mac)
 - Make sure you have installed [avr-gcc toolchain and avrdude](http://maxembedded.com/2015/06/setting-up-avr-gcc-toolchain-on-linux-and-mac-os-x/).
 - Connect your programmer to your PC and to the ICSP header on the board.
-- Open the makefile and change the chip if you are not using ATtiny85 and the programmer if you are not using usbasp.
 - Open a terminal.
 - Navigate to the folder with the makefile (software/sources).
-- Run "make install" to compile, burn the fuses and upload the firmware.
+- Run `DEVICE=attiny85 PROGRMR=usbasp make install` to compile, burn the fuses and upload the firmware (change DEVICE and PROGRMR accordingly).
 
 # References, Links and Notes
 1. [ATtiny25/45/85 Datasheet](https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-2586-AVR-8-bit-Microcontroller-ATtiny25-ATtiny45-ATtiny85_Datasheet.pdf)
